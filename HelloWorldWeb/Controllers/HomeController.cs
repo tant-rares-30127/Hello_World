@@ -20,10 +20,8 @@ namespace HelloWorldWeb.Controllers
 			teamInfo = new TeamInfo
 			{
 				TeamName = "Team 2",
-				TeamMembers = new List<string>()
+				TeamMembers = new List<string>(new string[] {"Gabriel", "Delia", "Sorina", "Rares", "Catalin"})
 			};
-			string[] listName = {"Gabriel", "Delia" , "Sorina", "Rares", "Catalin" };
-			teamInfo.TeamMembers.AddRange(listName);
 
 		}
 
