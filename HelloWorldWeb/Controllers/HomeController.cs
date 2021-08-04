@@ -24,9 +24,8 @@ namespace HelloWorldWeb.Controllers
             this.teamInfo = new TeamInfo
             {
                 TeamName = "Team 2",
-                TeamMembers = new List<string>(new string[] { "Gabriel", "Delia", "Sorina", "Rares", "Catalin" })
+                TeamMembers = new List<string>(new string[] { "Gabriel", "Delia", "Sorina", "Rares", "Catalin" }),
             };
-
         }
 
         [HttpPost]
