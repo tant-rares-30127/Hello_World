@@ -6,9 +6,10 @@
   // https://github.com/DotNetAnalyzers/StyleCopAnalyzers/blob/master/documentation/EnableConfiguration.md
 
   "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
-  "settings": {
-    "documentationRules": {
-      "companyName": "Principal33"
+    "settings": {
+        "orderingRules": {"usingDirectivesPlacement": "outsideNamespace"},
+        "documentationRules": {
+            "companyName": "Principal33"
+        }
     }
-  }
 }
