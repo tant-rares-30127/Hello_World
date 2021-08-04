@@ -3,8 +3,20 @@ $(document).ready(function () {
         var newcomerName = $("#nameField").val();
 
         // Remember string interpolation
-        $("#list").append(`<li>${newcomerName}</li>`);
+        
 
-        $("#nameField").val("");
+        $.ajax({
+            url: "/Home/AddTeamMember",
+            method: "POST",
+            data: {
+                "name": newcomerName
+            },
+            success: function (result) {
+                $("#list").append(`<li>${newcomerName}</li>`);
+                $("#nameField").val("");
+            }
+        })
+
+        
     })
 });
