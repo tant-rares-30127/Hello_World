@@ -2,8 +2,6 @@ $(document).ready(function () {
     $("#createButton").click(function () {
         var newcomerName = $("#nameField").val();
 
-        // Remember string interpolation
-
 
         $.ajax({
             url: "/Home/AddTeamMember",
@@ -32,6 +30,18 @@ $(document).ready(function () {
 
     $("#clearButton").click(function ClearFields() {
         $("#nameField").val("");
+        document.getElementById("createButton").disabled = true;
     });
 
 });
+
+(function () {
+    $('#nameField').on('change textInput input', function () {
+        var inputVal = this.value;
+        if (inputVal != "") {
+            document.getElementById("createButton").disabled = false;
+        } else {
+            document.getElementById("createButton").disabled = true;
+        }
+    });
+}());
