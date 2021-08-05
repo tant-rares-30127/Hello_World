@@ -1,4 +1,5 @@
 using System;
+using HelloWorldWeb.Models;
 using HelloWorldWeb.Services;
 using Xunit;
 
@@ -15,7 +16,8 @@ namespace HelloWorldWeb.Tests
 
             // Act
 
-            teamService.AddTeamMember("George");
+            Member member = new Member("George", 5);
+            teamService.AddTeamMember(member);
 
             // Assert
             Assert.Equal(5, teamService.GetTeamInfo().TeamMembers.Count);

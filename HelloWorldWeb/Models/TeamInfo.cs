@@ -10,6 +10,6 @@ namespace HelloWorldWeb.Models
     {
         public string TeamName { get; set; }
 
-        public List<string> TeamMembers { get; set; }
+        public List<Member> TeamMembers { get; set; }
     }
 }
