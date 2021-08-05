@@ -3,7 +3,7 @@ $(document).ready(function () {
         var newcomerName = $("#nameField").val();
 
         // Remember string interpolation
-        
+
 
         $.ajax({
             url: "/Home/AddTeamMember",
@@ -12,32 +12,26 @@ $(document).ready(function () {
                 "name": newcomerName
             },
             success: function (result) {
-                $("#list").append(`<li>${newcomerName}</li>`);
+                $("#list").append(
+                    `<li>
+                        <span class="memberName">
+                            ${newcomerName}
+                        </span >
+                        <span class="delete fa fa-remove" onclick="deleteMember(${result})">
+                        </span>
+                        <span class="edit fa fa-pencil">
+                        </span>
+                    </li>`);
                 $("#nameField").val("");
-            }
-        })
-
-        
-    })
-
-    $("#deleteField").click(function () {
-        var newcomerName = $("#memberField").val();
-
-        // Remember string interpolation
-
-
-        $.ajax({
-            url: "/Home/DeleteTeamMember",
-            method: "POST",
-            data: {
-                "name": newcomerName
-            },
-            success: function (result) {
-                $("#list").remove(`<li>${newcomerName}</li>`);
-                $("#memberField").val("");
+                document.getElementById("createButton").disabled = true;
             }
         })
 
 
-    })
+    });
+
+    $("#clearButton").click(function ClearFields() {
+        $("#nameField").val("");
+    });
+
 });

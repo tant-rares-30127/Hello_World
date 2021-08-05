@@ -18,17 +18,17 @@ namespace HelloWorldWeb.Services
 
         public TeamInfo GetTeamInfo()
         {
-            return teamInfo;
+            return this.teamInfo;
         }
 
         public void AddTeamMember(Member member)
         {
-            teamInfo.TeamMembers.Add(member);
+            this.teamInfo.TeamMembers.Add(member);
         }
 
         void ITeamService.DeleteTeamMember(Member member)
         {
-            teamInfo.TeamMembers.Remove(member);
+            this.teamInfo.TeamMembers.Remove(member);
         }
     }
 }

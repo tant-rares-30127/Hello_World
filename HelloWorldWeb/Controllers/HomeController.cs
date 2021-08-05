@@ -18,28 +18,27 @@ namespace HelloWorldWeb.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ITeamService teamService;
-        private int index;
 
         public HomeController(ILogger<HomeController> logger, ITeamService teamService)
         {
             this._logger = logger;
             this.teamService = teamService;
-            this.index = teamService.GetTeamInfo().TeamMembers.Count;
         }
 
         [HttpPost]
-        public void AddTeamMember(string name)
+        public int AddTeamMember(string name)
         {
-            this.index++;
-            Member member = new Member(name, this.index);
+            int index = this.teamService.GetTeamInfo().TeamMembers.Count+2;
+            Member member = new Member(name, index);
             this.teamService.AddTeamMember(member);
+            return index;
         }
 
         [HttpPost]
         public void DeleteTeamMember(int id)
         {
             string name="";
-            foreach(Member m in teamService.GetTeamInfo().TeamMembers)
+            foreach(Member m in this.teamService.GetTeamInfo().TeamMembers)
             {
                 if (m.Id==id) { name = m.Name; break; }
             }

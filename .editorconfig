@@ -5,3 +5,6 @@ dotnet_diagnostic.SA1600.severity = suggestion
 
 # SA1200: Using directives should be placed correctly
 dotnet_diagnostic.SA1200.severity = none
+
+# IDE0005: Using directive is unnecessary.
+dotnet_diagnostic.IDE0005.severity = suggestion
