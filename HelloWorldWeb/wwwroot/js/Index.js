@@ -33,9 +33,28 @@ $(document).ready(function () {
         document.getElementById("createButton").disabled = true;
     });
 
-   // $('#editClassmate #submit').click(function () {
-     //   console.log(`${$('#editClassmate').attr('data-member-id')}`);
-    //});
+    $("#editClassmate").on("click", "#submit", function () {
+        console.log('submit changes to server');
+        var name = $("#classmateName").val();
+        var id = $('#editClassmate').attr('data-member-id');
+      //  var id = 5;
+        $.ajax({
+            url: "/Home/EditTeamMember",
+            method: "POST",
+            data: {
+                "id": id,
+                "name": name
+            },
+            success: function (result) {
+                console.log('Succesful renamed: ${id}');
+                location.reload();
+            }
+        })
+    })
+
+    $("#editClassmate").on("click", "#cancel", function () {
+        console.log('cancel changes');
+    })
 
     $("#list").on("click", ".pencil", function () {
 
