@@ -41,7 +41,7 @@ function deleteMember(index) {
         url: "/Home/DeleteTeamMember",
         method: "DELETE",
         data: {
-            memberIndex: index
+            "id": index
         },
         success: function (result) {
             location.reload();

@@ -12,7 +12,6 @@ namespace HelloWorldWeb.Services
 
         public TeamService()
         {
-
             this.teamInfo = new TeamInfo { TeamName = "name", TeamMembers = new List<Member>() { new Member("Gabriel", 1), new Member("Delia", 2), new Member("Rares", 3), new Member("Catalin", 4) } };
         }
 
