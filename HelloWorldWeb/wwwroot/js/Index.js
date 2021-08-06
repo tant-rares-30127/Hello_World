@@ -33,6 +33,26 @@ $(document).ready(function () {
         document.getElementById("createButton").disabled = true;
     });
 
+   // $('#editClassmate #submit').click(function () {
+     //   console.log(`${$('#editClassmate').attr('data-member-id')}`);
+    //});
+
+    $("#list").on("click", ".pencil", function () {
+
+        var targetMemberTag = $(this).closest('li');
+
+        var id = targetMemberTag.attr('data-member-id');
+
+        var currentName = targetMemberTag.find(".memberName").text();
+
+        $('#editClassmate').attr("data-member-id", id);
+
+        $('#classmateName').val(currentName);
+
+        $('#editClassmate').modal('show');
+
+    })
+
 });
 
 function deleteMember(index) {
