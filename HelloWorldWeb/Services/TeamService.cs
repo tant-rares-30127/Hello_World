@@ -29,5 +29,10 @@ namespace HelloWorldWeb.Services
         {
             this.teamInfo.TeamMembers.Remove(member);
         }
+
+        void ITeamService.EditTeamMember(int id, string name)
+        {
+            this.teamInfo.TeamMembers[id].Name = name;
+        }
     }
 }
