@@ -25,6 +25,26 @@ namespace HelloWorldWeb.Tests
         }
 
         [Fact]
+        public void DeleteTeamMemberToTheTeam()
+        {
+            // Assume
+
+            ITeamService teamService = new TeamService();
+
+            // Act
+
+            Member member = new Member("George", 5);
+            Member member2 = teamService.GetTeamInfo().TeamMembers[2];
+            teamService.AddTeamMember(member);
+            teamService.DeleteTeamMember(member);
+            teamService.DeleteTeamMember(member2);
+
+            // Assert
+            Assert.Equal(3, teamService.GetTeamInfo().TeamMembers.Count);
+
+        }
+
+        [Fact]
         public void EditTeamMember()
         {
             // Assume
