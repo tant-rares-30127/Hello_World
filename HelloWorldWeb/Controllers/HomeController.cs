@@ -42,13 +42,10 @@ namespace HelloWorldWeb.Controllers
             {
                 if (m.Id == id)
                 {
-                    name = m.Name;
-                    break;
+                    Member member = new Member(name, id);
+                    this.teamService.DeleteTeamMember(member);
                 }
             }
-
-            Member member = new Member(name, id);
-            this.teamService.DeleteTeamMember(member);
         }
 
         [HttpGet]
