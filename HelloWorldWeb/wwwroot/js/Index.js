@@ -35,6 +35,21 @@ $(document).ready(function () {
 
 });
 
+function deleteMember(index) {
+
+    $.ajax({
+        url: "/Home/DeleteTeamMember",
+        method: "DELETE",
+        data: {
+            memberIndex: index
+        },
+        success: function (result) {
+            location.reload();
+        }
+    })
+}
+
+
 (function () {
     $('#nameField').on('change textInput input', function () {
         var inputVal = this.value;

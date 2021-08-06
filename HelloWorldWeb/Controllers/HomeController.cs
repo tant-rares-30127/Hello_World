@@ -38,7 +38,7 @@ namespace HelloWorldWeb.Controllers
         public void DeleteTeamMember(int id)
         {
             string name="";
-            foreach(Member m in this.teamService.GetTeamInfo().TeamMembers)
+            foreach (Member m in this.teamService.GetTeamInfo().TeamMembers)
             {
                 if (m.Id==id) { name = m.Name; break; }
             }
