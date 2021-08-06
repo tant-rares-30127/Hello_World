@@ -1,5 +1,5 @@
-﻿// <copyright file="HomeController.cs" company="Principal33">
-// Copyright (c) Principal33. All rights reserved.
+﻿// <copyright file="HomeController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 
 using System;
@@ -43,15 +43,16 @@ namespace HelloWorldWeb.Controllers
         [HttpDelete]
         public void DeleteTeamMember(int id)
         {
+            Member member = null;
             foreach (Member m in this.teamService.GetTeamInfo().TeamMembers)
             {
                 if (m.Id == id)
                 {
-                    string name = m.Name;
-                    Member member = new Member(name, id);
-                    this.teamService.DeleteTeamMember(member);
+                    member = m;
                 }
             }
+
+            this.teamService.DeleteTeamMember(member);
         }
 
         [HttpGet]

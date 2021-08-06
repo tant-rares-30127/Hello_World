@@ -1,4 +1,8 @@
-﻿using HelloWorldWeb.Models;
+﻿// <copyright file="ITeamService.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using HelloWorldWeb.Models;
 
 namespace HelloWorldWeb.Services
 {
@@ -9,6 +13,7 @@ namespace HelloWorldWeb.Services
         void DeleteTeamMember(Member member);
 
         TeamInfo GetTeamInfo();
+
         void EditTeamMember(int id, string name);
     }
 }
