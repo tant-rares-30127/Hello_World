@@ -22,6 +22,7 @@ $(document).ready(function () {
                     </li>`);
                 $("#nameField").val("");
                 document.getElementById("createButton").disabled = true;
+                location.reload();
             }
         })
 

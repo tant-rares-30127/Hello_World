@@ -28,7 +28,7 @@ namespace HelloWorldWeb.Controllers
         [HttpPost]
         public int AddTeamMember(string name)
         {
-            int index = this.teamService.GetTeamInfo().TeamMembers.Count + 2;
+            int index = this.teamService.GetTeamInfo().TeamMembers.Count + 1;
             Member member = new Member(name, index);
             this.teamService.AddTeamMember(member);
             return index;
@@ -43,11 +43,11 @@ namespace HelloWorldWeb.Controllers
         [HttpDelete]
         public void DeleteTeamMember(int id)
         {
-            string name = "";
             foreach (Member m in this.teamService.GetTeamInfo().TeamMembers)
             {
                 if (m.Id == id)
                 {
+                    string name = m.Name;
                     Member member = new Member(name, id);
                     this.teamService.DeleteTeamMember(member);
                 }
