@@ -6,13 +6,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HelloWorldWeb.Services;
 
 namespace HelloWorldWeb.Models
 {
     public class Member
     {
-        public Member(string name, int id)
+        private readonly ITimeService timeService;
+
+        public Member(string name, int id, ITimeService timeService)
         {
+            this.timeService = timeService;
             this.Id = id;
             this.Name = name;
         }
@@ -25,7 +29,7 @@ namespace HelloWorldWeb.Models
 
         public int GetAge()
         {
-            var age = DateTime.Now.Subtract(this.Birthdate).Days;
+            var age = this.timeService.Now().Subtract(this.Birthdate).Days;
             age = age / 365;
 
             return age;
