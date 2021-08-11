@@ -7,6 +7,8 @@ namespace HelloWorldWeb.Tests
 {
     public class NewTeamServiceTests
     {
+        private ITimeService timeService;
+
         [Fact]
         public void AddTeamMemberToTheTeam()
         {
@@ -16,7 +18,7 @@ namespace HelloWorldWeb.Tests
 
             // Act
 
-            Member member = new Member("George", 5);
+            Member member = new Member("George", 5, timeService);
             teamService.AddTeamMember(member);
 
             // Assert
@@ -33,7 +35,7 @@ namespace HelloWorldWeb.Tests
 
             // Act
 
-            Member member = new Member("George", 5);
+            Member member = new Member("George", 5, timeService);
             Member member2 = teamService.GetTeamInfo().TeamMembers[2];
             teamService.AddTeamMember(member);
             teamService.DeleteTeamMember(member);
@@ -68,7 +70,7 @@ namespace HelloWorldWeb.Tests
             // Assume
             ITeamService teamService = new TeamService();
             var teamMember = teamService.GetTeamInfo().TeamMembers[teamService.GetTeamInfo().TeamMembers.Count - 2];
-            var newMember = new Member("Borys", 5);
+            var newMember = new Member("Borys", 5, timeService);
 
             // Act
             teamService.DeleteTeamMember(teamMember);

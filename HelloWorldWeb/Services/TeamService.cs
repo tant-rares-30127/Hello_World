@@ -13,10 +13,11 @@ namespace HelloWorldWeb.Services
     public class TeamService : ITeamService
     {
         private readonly TeamInfo teamInfo;
+        private ITimeService timeService;
 
         public TeamService()
         {
-            this.teamInfo = new TeamInfo { TeamName = "name", TeamMembers = new List<Member>() { new Member("Gabriel", 1), new Member("Delia", 2), new Member("Rares", 3), new Member("Catalin", 4) } };
+            this.teamInfo = new TeamInfo { TeamName = "name", TeamMembers = new List<Member>() { new Member("Gabriel", 1, this.timeService), new Member("Delia", 2, this.timeService), new Member("Rares", 3, this.timeService), new Member("Catalin", 4, this.timeService) } };
         }
 
         public TeamInfo GetTeamInfo()
