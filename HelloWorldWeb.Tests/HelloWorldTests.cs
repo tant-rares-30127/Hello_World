@@ -5,7 +5,7 @@ using Xunit;
 
 namespace HelloWorldWeb.Tests
 {
-    public class TeamServiceTest
+    public class NewTeamServiceTests
     {
         [Fact]
         public void AddTeamMemberToTheTeam()
@@ -21,7 +21,7 @@ namespace HelloWorldWeb.Tests
 
             // Assert
             Assert.Equal(5, teamService.GetTeamInfo().TeamMembers.Count);
-   
+
         }
 
         [Fact]
@@ -76,7 +76,7 @@ namespace HelloWorldWeb.Tests
             teamService.DeleteTeamMember(newMember);
 
             // Assert
-            newMember = teamService.GetTeamInfo().TeamMembers.Find(element => element.Name=="Borys");
+            newMember = teamService.GetTeamInfo().TeamMembers.Find(element => element.Name == "Borys");
             Assert.Null(newMember);
         }
     }
