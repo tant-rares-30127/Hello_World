@@ -53,7 +53,7 @@ namespace HelloWorldWeb.Tests
 
             // Act
 
-            teamService.EditTeamMember(3, "NewName");
+            teamService.EditTeamMember(4, "NewName");
 
             // Assert
 
