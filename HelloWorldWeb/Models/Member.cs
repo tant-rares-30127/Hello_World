@@ -20,5 +20,15 @@ namespace HelloWorldWeb.Models
         public string Name { get; set; }
 
         public int Id { get; set; }
+
+        public DateTime Birthdate { get; set; }
+
+        public int GetAge()
+        {
+            var age = DateTime.Now.Subtract(this.Birthdate).Days;
+            age = age / 365;
+
+            return age;
+        }
     }
 }
