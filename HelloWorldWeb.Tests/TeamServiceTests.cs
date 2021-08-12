@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using HelloWorldWeb.Models;
 using HelloWorldWeb.Services;
+using Moq;
 using Xunit;
 
 namespace HelloWorldWeb.Tests
@@ -15,7 +16,9 @@ namespace HelloWorldWeb.Tests
 
         public TeamServiceTests()
         {
-            this.timeService = new FakeTimeService();
+            var mock = new Mock<ITimeService>();
+            mock.Setup(_ => _.Now()).Returns(new DateTime(2021,8,11));
+            timeService = mock.Object;
         }
 
         [Fact]
