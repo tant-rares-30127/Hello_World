@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HelloWorldWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using RestSharp;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,9 +14,22 @@ namespace HelloWorldWeb.Controllers
     [ApiController]
     public class WeatherController : ControllerBase
     {
+        private readonly string latitude = "46.7700";
+        private readonly string longitude = "23.5800";
+        private readonly string apiKey = "f01d52e552796a854eb758d8fb3c04d3";
+
         // GET: api/<WheatherController>
         [HttpGet]
         public IEnumerable<DailyWeatherRecord> Get()
+        {
+            var client = new RestClient($"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=hourly,minutely&appid={apiKey}");
+            client.Timeout = -1;
+            var request = new RestRequest(Method.GET);
+            IRestResponse response = client.Execute(request);
+            return this.ConvertResponseToWeatherRecordList(response.Content);
+        }
+
+        public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
         {
             return new DailyWeatherRecord[]
             {
@@ -29,24 +43,6 @@ namespace HelloWorldWeb.Controllers
         public string Get(int id)
         {
             return "value";
-        }
-
-        // POST api/<WheatherController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        // PUT api/<WheatherController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<WheatherController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
         }
     }
 }
