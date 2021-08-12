@@ -46,11 +46,29 @@ namespace HelloWorldWeb.Controllers
                 dailyWheatherRecord.Day = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.Date;
                 result.Add(dailyWheatherRecord);
 
-                float unixTemperature = item.SelectToken("temp").Value<float>("day");
-                dailyWheatherRecord.Temperature = unixTemperature;
+                float temperature = item.SelectToken("temp").Value<float>("day");
+                dailyWheatherRecord.Temperature = temperature;
+
+                string weather = item.SelectToken("weather")[0].Value<string>("description");
+                dailyWheatherRecord.Type = Convert(weather);
             }
 
             return result;
+        }
+
+        private WeatherType Convert(string weather)
+        {
+            switch (weather)
+            {
+                case "few clouds":
+                    return WeatherType.FewClouds;
+                case "light rain":
+                    return WeatherType.LightRain;
+                case "broken clouds":
+                    return WeatherType.BrokenClouds;
+                default:
+                    throw new Exception($"Unknown weather type {weather}.");
+            }
         }
 
         // GET api/<WheatherController>/5
