@@ -23,6 +23,7 @@ namespace HelloWorldWeb.Controllers
         [HttpGet]
         public IEnumerable<DailyWeatherRecord> Get()
         {
+            // https://api.openweathermap.org/data/2.5/onecall?lat=46.7700&lon=23.5800&exclude=hourly,minutely&appid=f01d52e552796a854eb758d8fb3c04d3
             var client = new RestClient($"https://api.openweathermap.org/data/2.5/onecall?lat={latitude}&lon={longitude}&exclude=hourly,minutely&appid={apiKey}");
             client.Timeout = -1;
             var request = new RestRequest(Method.GET);
@@ -47,6 +48,7 @@ namespace HelloWorldWeb.Controllers
                 result.Add(dailyWheatherRecord);
 
                 float temperature = item.SelectToken("temp").Value<float>("day");
+                temperature = temperature - 272.15f;
                 dailyWheatherRecord.Temperature = temperature;
 
                 string weather = item.SelectToken("weather")[0].Value<string>("description");
@@ -66,6 +68,20 @@ namespace HelloWorldWeb.Controllers
                     return WeatherType.LightRain;
                 case "broken clouds":
                     return WeatherType.BrokenClouds;
+                case "clear sky":
+                    return WeatherType.ClearSky;
+                case "scattered clouds":
+                    return WeatherType.ScatteredClouds;
+                case "shower rain":
+                    return WeatherType.ShowerRain;
+                case "rain":
+                    return WeatherType.Rain;
+                case "thunderstorm":
+                    return WeatherType.Thunderstorm;
+                case "snow":
+                    return WeatherType.Snow;
+                case "mist":
+                    return WeatherType.Mist;
                 default:
                     throw new Exception($"Unknown weather type {weather}.");
             }
