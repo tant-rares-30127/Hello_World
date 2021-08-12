@@ -33,8 +33,8 @@ namespace HelloWorldWeb.Tests
             int age = newTeamMember.GetAge();
 
             // Assert
-            timeMock.Verify(_ => _.Now(), Times.AtMostOnce());
             Assert.Equal(30, age);
+            timeMock.Verify(_ => _.Now(), Times.Once());
         }
     }
 }
