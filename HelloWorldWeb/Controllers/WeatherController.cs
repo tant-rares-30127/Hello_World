@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HelloWorldWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -31,11 +32,20 @@ namespace HelloWorldWeb.Controllers
 
         public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
         {
-            return new DailyWeatherRecord[]
+            var json = JObject.Parse(content);
+            List<DailyWeatherRecord> result = new List<DailyWeatherRecord>();
+
+            var jsonArray = json["daily"].Take(7);
+
+            foreach (var item in jsonArray)
             {
-                new DailyWeatherRecord(new DateTime(2021, 8, 12), 22, WeatherType.Mild),
-                new DailyWeatherRecord(new DateTime(2021, 8, 13), 25, WeatherType.Hot),
-            };
+                //TODO: Convert item to DailyWeatherRecord
+
+                DailyWeatherRecord daily = new DailyWeatherRecord(new DateTime(2021, 8, 12), 22.0f, WeatherType.Mild);
+                result.Add(daily);
+            }
+
+            return result;
         }
 
         // GET api/<WheatherController>/5
