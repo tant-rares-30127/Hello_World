@@ -12,37 +12,29 @@ namespace HelloWorldWeb.Tests
 {
     public class TeamServiceTests
     {
-        private ITimeService timeService;
+        private Mock<ITimeService> timeMock;
 
-        public TeamServiceTests()
+        private void InitializeTimeServiceMock()
         {
-            var mock = new Mock<ITimeService>();
-            mock.Setup(_ => _.Now()).Returns(new DateTime(2021,8,11));
-            timeService = mock.Object;
+            timeMock = new Mock<ITimeService>();
+            timeMock.Setup(_ => _.Now()).Returns(new DateTime(2021, 8, 11));
         }
 
         [Fact]
         public void GettingAgeTest()
         {
             // Assume
-
+            InitializeTimeServiceMock();
+            var timeService = timeMock.Object;
             var newTeamMember = new Member("Lisa", 6, timeService);
             newTeamMember.Birthdate = new DateTime(1990, 10, 13);
 
             // Act
-
             int age = newTeamMember.GetAge();
 
             // Assert
-
+            timeMock.Verify(_ => _.Now(), Times.AtMostOnce());
             Assert.Equal(30, age);
-        }
-    }
-    internal class FakeTimeService : ITimeService
-    {
-        public DateTime Now()
-        {
-            return new DateTime(2021, 08, 11);
         }
     }
 }
