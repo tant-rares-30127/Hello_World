@@ -41,8 +41,10 @@ namespace HelloWorldWeb.Controllers
             {
                 //TODO: Convert item to DailyWeatherRecord
 
-                DailyWeatherRecord daily = new DailyWeatherRecord(new DateTime(2021, 8, 12), 22.0f, WeatherType.Mild);
-                result.Add(daily);
+                DailyWeatherRecord dailyWheatherRecord = new DailyWeatherRecord(new DateTime(2021, 8, 12), 22.0f, WeatherType.Mild);
+                long unixDateTime = item.Value<long>("dt");
+                dailyWheatherRecord.Day = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.Date;
+                result.Add(dailyWheatherRecord);
             }
 
             return result;
