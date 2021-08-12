@@ -45,6 +45,9 @@ namespace HelloWorldWeb.Controllers
                 long unixDateTime = item.Value<long>("dt");
                 dailyWheatherRecord.Day = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.Date;
                 result.Add(dailyWheatherRecord);
+
+                float unixTemperature = item.SelectToken("temp").Value<float>("day");
+                dailyWheatherRecord.Temperature = unixTemperature;
             }
 
             return result;
