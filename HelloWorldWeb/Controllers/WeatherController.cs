@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HelloWorldWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Moq;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
@@ -15,9 +16,9 @@ namespace HelloWorldWeb.Controllers
     [ApiController]
     public class WeatherController : ControllerBase
     {
-        private readonly string latitude = "46.7700";
-        private readonly string longitude = "23.5800";
-        private readonly string apiKey = "f01d52e552796a854eb758d8fb3c04d3";
+        private readonly string latitude;
+        private readonly string longitude;
+        private readonly string apiKey;
 
         public const float KELVIN_CONST = 273.15f;
 
@@ -43,6 +44,11 @@ namespace HelloWorldWeb.Controllers
         public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
         {
             var json = JObject.Parse(content);
+            if (json["daily"] == null)
+            {
+                throw new Exception("Apikey not valid.");
+            }
+
             var jsonArray = json["daily"].Take(7);
             return jsonArray.Select(CreatingWeatherRecordFromJToken);
         }
