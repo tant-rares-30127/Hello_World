@@ -10,13 +10,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9F5B5F34-7C5E-4430-9B34-02436A22D5CA}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HelloWorldWeb.Tests", "HelloWorldWeb.Tests\HelloWorldWeb.Tests.csproj", "{C9CC60C3-F32B-4E97-9D71-A84CCC8E6017}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{0716B826-0E8C-4BBD-8A9D-EAD1CC6E8626}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{88ED0212-BB51-42C4-8EE6-1EC03FD6E0A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication2", "WebApplication2\WebApplication2.csproj", "{88ED0212-BB51-42C4-8EE6-1EC03FD6E0A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
