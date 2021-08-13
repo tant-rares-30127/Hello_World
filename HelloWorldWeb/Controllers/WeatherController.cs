@@ -21,10 +21,6 @@ namespace HelloWorldWeb.Controllers
 
         public const float KELVIN_CONST = 273.15f;
 
-        public WeatherController()
-        {
-        }
-
         public WeatherController(IWeatherControllerSettings conf)
         {
             longitude = conf.Longitude;
@@ -90,6 +86,8 @@ namespace HelloWorldWeb.Controllers
                     return WeatherType.Snow;
                 case "mist":
                     return WeatherType.Mist;
+                case "moderate rain":
+                    return WeatherType.ModerateRain;
                 default:
                     throw new Exception($"Unknown weather type {weather}.");
             }
