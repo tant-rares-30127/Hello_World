@@ -40,20 +40,26 @@ namespace HelloWorldWeb.Controllers
 
             foreach (var item in jsonArray)
             {
-                DailyWeatherRecord dailyWheatherRecord = new DailyWeatherRecord();
-                long unixDateTime = item.Value<long>("dt");
-                dailyWheatherRecord.Day = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.Date;
+                DailyWeatherRecord dailyWheatherRecord = CreatingWeatherRecordFromJToken(item);
                 result.Add(dailyWheatherRecord);
-
-                float temperature = item.SelectToken("temp").Value<float>("day");
-                temperature = temperature - 272.15f;
-                dailyWheatherRecord.Temperature = temperature;
-
-                string weather = item.SelectToken("weather")[0].Value<string>("description");
-                dailyWheatherRecord.Type = Convert(weather);
             }
 
             return result;
+        }
+
+        private DailyWeatherRecord CreatingWeatherRecordFromJToken(JToken item)
+        {
+            long unixDateTime = item.Value<long>("dt");
+            var day = DateTimeOffset.FromUnixTimeSeconds(unixDateTime).DateTime.Date;
+
+            float temperature = item.SelectToken("temp").Value<float>("day");
+            temperature = temperature - 273.15f;
+
+            string weather = item.SelectToken("weather")[0].Value<string>("description");
+            var type = Convert(weather);
+
+            DailyWeatherRecord dailyWheatherRecord = new DailyWeatherRecord(day, temperature, type);
+            return dailyWheatherRecord;
         }
 
         private WeatherType Convert(string weather)
