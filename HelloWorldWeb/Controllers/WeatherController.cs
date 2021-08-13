@@ -21,6 +21,17 @@ namespace HelloWorldWeb.Controllers
 
         public const float KELVIN_CONST = 273.15f;
 
+        public WeatherController()
+        {
+        }
+
+        public WeatherController(IWeatherControllerSettings conf)
+        {
+            longitude = conf.Longitude;
+            latitude = conf.Latitude;
+            apiKey = conf.ApiKey;
+        }
+
         // GET: api/<WheatherController>
         [HttpGet]
         public IEnumerable<DailyWeatherRecord> Get()
