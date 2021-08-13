@@ -12,6 +12,10 @@ using RestSharp;
 
 namespace HelloWorldWeb.Controllers
 {
+    /// <summary>
+    /// Fetch data from weather API.
+    /// </summary>
+
     [Route("api/[controller]")]
     [ApiController]
     public class WeatherController : ControllerBase

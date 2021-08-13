@@ -4,5 +4,10 @@
         <name>HelloWorldWeb</name>
     </assembly>
     <members>
+        <member name="T:HelloWorldWeb.Controllers.WeatherController">
+            <summary>
+            Fetch data from weather API.
+            </summary>
+        </member>
     </members>
 </doc>
