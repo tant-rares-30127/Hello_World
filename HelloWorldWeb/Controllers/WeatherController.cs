@@ -1,4 +1,8 @@
-﻿using System;
+﻿// <copyright file="WeatherController.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,23 +12,20 @@ using Moq;
 using Newtonsoft.Json.Linq;
 using RestSharp;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace HelloWorldWeb.Controllers
 {
     /// <summary>
     /// Fetch data from weather API.
     /// </summary>
-
     [Route("api/[controller]")]
     [ApiController]
     public class WeatherController : ControllerBase
     {
+        private const float KELVIN_CONST = 273.15f;
+
         private readonly string latitude;
         private readonly string longitude;
         private readonly string apiKey;
-
-        public const float KELVIN_CONST = 273.15f;
 
         public WeatherController(IWeatherControllerSettings conf)
         {

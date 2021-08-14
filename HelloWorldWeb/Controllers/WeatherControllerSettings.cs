@@ -1,8 +1,4 @@
-﻿// <copyright file="Startup.cs" company="PlaceholderCompany">
-// Copyright (c) PlaceholderCompany. All rights reserved.
-// </copyright>
-
-using HelloWorldWeb.Controllers;
+﻿using HelloWorldWeb.Controllers;
 using Microsoft.Extensions.Configuration;
 
 namespace HelloWorldWeb

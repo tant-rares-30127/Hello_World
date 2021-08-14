@@ -14,3 +14,18 @@ dotnet_diagnostic.SA1309.severity = none
 
 # SA1101: Prefix local calls with this
 dotnet_diagnostic.SA1101.severity = suggestion
+
+# SA1602: Enumeration items should be documented
+dotnet_diagnostic.SA1602.severity = suggestion
+
+# SA1210: Using directives should be ordered alphabetically by namespace
+dotnet_diagnostic.SA1210.severity = suggestion
+
+# SA1310: Field names should not contain underscore
+dotnet_diagnostic.SA1310.severity = suggestion
+
+# SA1202: Elements should be ordered by access
+dotnet_diagnostic.SA1202.severity = suggestion
+
+# SA1633: File should have header
+dotnet_diagnostic.SA1633.severity = suggestion

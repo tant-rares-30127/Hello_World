@@ -3,23 +3,19 @@
 // </copyright>
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.IO;
+using System.Reflection;
+using HelloWorldWeb.Controllers;
+using HelloWorldWeb.Data;
 using HelloWorldWeb.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using HelloWorldWeb.Data;
-using HelloWorldWeb.Controllers;
 using Microsoft.OpenApi.Models;
-using System.Reflection;
-using System.IO;
 
 namespace HelloWorldWeb
 {
@@ -43,7 +39,6 @@ namespace HelloWorldWeb
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Hello World API", Version = "v1" });
-                // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
@@ -75,6 +70,7 @@ namespace HelloWorldWeb
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
