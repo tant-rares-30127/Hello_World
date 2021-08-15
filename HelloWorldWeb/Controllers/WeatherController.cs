@@ -34,7 +34,10 @@ namespace HelloWorldWeb.Controllers
             apiKey = conf.ApiKey;
         }
 
-        // GET: api/<WheatherController>
+        /// <summary>
+        /// Get forecast for 7 days starting from today in the target location.
+        /// </summary>
+        /// <returns>Enumerable of the DailyWeatherRecord, consisting of date, temparature and type.</returns>
         [HttpGet]
         public IEnumerable<DailyWeatherRecord> Get()
         {
@@ -46,6 +49,7 @@ namespace HelloWorldWeb.Controllers
             return this.ConvertResponseToWeatherRecordList(response.Content);
         }
 
+        [NonAction]
         public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
         {
             var json = JObject.Parse(content);
@@ -99,6 +103,8 @@ namespace HelloWorldWeb.Controllers
                     return WeatherType.Mist;
                 case "moderate rain":
                     return WeatherType.ModerateRain;
+                case "overcast clouds":
+                    return WeatherType.OvercastClouds;
                 default:
                     throw new Exception($"Unknown weather type {weather}.");
             }

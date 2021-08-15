@@ -23,5 +23,6 @@
         Snow,
         Mist,
         ModerateRain,
+        OvercastClouds,
     }
 }
