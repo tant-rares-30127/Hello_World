@@ -32,3 +32,9 @@ dotnet_diagnostic.SA1633.severity = suggestion
 
 # SA1133: Do not combine attributes
 dotnet_diagnostic.SA1133.severity = suggestion
+
+# SA1601: Partial elements should be documented
+dotnet_diagnostic.SA1601.severity = suggestion
+
+# IDE0044: Add readonly modifier
+dotnet_diagnostic.IDE0044.severity = suggestion
