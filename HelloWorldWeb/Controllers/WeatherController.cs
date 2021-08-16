@@ -46,6 +46,7 @@ namespace HelloWorldWeb.Controllers
             return this.ConvertResponseToWeatherRecordList(response.Content);
         }
 
+        [NonAction]
         public IEnumerable<DailyWeatherRecord> ConvertResponseToWeatherRecordList(string content)
         {
             var json = JObject.Parse(content);
@@ -99,6 +100,8 @@ namespace HelloWorldWeb.Controllers
                     return WeatherType.Mist;
                 case "moderate rain":
                     return WeatherType.ModerateRain;
+                case "overcast clouds":
+                    return WeatherType.OvercastClouds;
                 default:
                     throw new Exception($"Unknown weather type {weather}.");
             }
