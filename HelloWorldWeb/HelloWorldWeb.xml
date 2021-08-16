@@ -7,6 +7,7 @@
         <member name="T:HelloWorldWeb.Controllers.WeatherController">
             <summary>
             Fetch data from weather API.
+            <see href="https://openweathermap.org/api" />.
             </summary>
         </member>
         <member name="M:HelloWorldWeb.Controllers.WeatherController.Get(System.Int32)">
