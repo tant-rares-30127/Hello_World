@@ -107,9 +107,13 @@ namespace HelloWorldWeb.Controllers
             }
         }
 
-        // GET api/<WheatherController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        /// <summary>
+        /// Get a weather forcast for the day in specified amount of days from now.
+        /// </summary>
+        /// <param name="index">Amount of days from now (from 0-7).</param>
+        /// <returns>The weather forecast.</returns>
+        [HttpGet("{index}")]
+        public string Get(int index)
         {
             return "value";
         }
