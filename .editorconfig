@@ -29,3 +29,6 @@ dotnet_diagnostic.SA1202.severity = suggestion
 
 # SA1633: File should have header
 dotnet_diagnostic.SA1633.severity = suggestion
+
+# SA1133: Do not combine attributes
+dotnet_diagnostic.SA1133.severity = suggestion

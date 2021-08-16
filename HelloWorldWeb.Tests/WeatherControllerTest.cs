@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using HelloWorldWeb.Controllers;
@@ -37,8 +38,9 @@ namespace HelloWorldWeb.Tests
 
         private string LoadJsonFromResource()
         {
-            var resourceName = "HelloWorldWeb.Tests.TestData.ContentWeatherApi.json";
             var assembly = this.GetType().Assembly;
+            var assemblyName = assembly.GetName().Name;
+            var resourceName = $"{assemblyName}.TestData.ContentWeatherApi.json";
             var resourceStream = assembly.GetManifestResourceStream(resourceName);
             using (var tr = new StreamReader(resourceStream))
             {

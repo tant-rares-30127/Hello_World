@@ -62,6 +62,7 @@ namespace HelloWorldWeb.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
             return View(skill);
         }
 
@@ -78,6 +79,7 @@ namespace HelloWorldWeb.Controllers
             {
                 return NotFound();
             }
+
             return View(skill);
         }
 
@@ -111,8 +113,10 @@ namespace HelloWorldWeb.Controllers
                         throw;
                     }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(skill);
         }
 
