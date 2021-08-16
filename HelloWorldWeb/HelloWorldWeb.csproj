@@ -4,6 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
 	  <DocumentationFile>$(OutputPath)$(AssemblyName).xml</DocumentationFile>
 	  <NoWarn>$(NoWarn),1573,1591,1712</NoWarn>
+	  <UserSecretsId>bdc21ff8-547f-4c01-a38a-dd75c086c955</UserSecretsId>
+	  <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
 	  
   </PropertyGroup>
 
