@@ -18,3 +18,13 @@ docker build -t rareshelloworldapp
 ```
 docker run -d -p 8081:80 --name rareshelloworldapp_container rareshelloworldapp
 ```
+
+4. Heroku push
+```
+heroku container:push -a rareshelloworldapp web
+```
+
+5. Release the container
+```
+heroku container:release -a rareshelloworldap web
+```
