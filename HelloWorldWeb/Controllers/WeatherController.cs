@@ -16,6 +16,7 @@ namespace HelloWorldWeb.Controllers
 {
     /// <summary>
     /// Fetch data from weather API.
+    /// <see href="https://openweathermap.org/api" />.
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]

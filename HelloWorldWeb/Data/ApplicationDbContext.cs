@@ -13,6 +13,7 @@ namespace HelloWorldWeb.Data
             : base(options)
         {
         }
+
         public DbSet<HelloWorldWeb.Models.Skill> Skill { get; set; }
     }
 }
