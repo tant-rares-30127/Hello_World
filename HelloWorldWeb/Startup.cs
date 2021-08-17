@@ -49,8 +49,8 @@ namespace HelloWorldWeb
             services.AddControllersWithViews();
             services.AddSingleton<IWeatherControllerSettings, WeatherControllerSettings>();
             services.Configure<WeatherControllerSettings>(Configuration);
-            services.AddSingleton<ITeamService>(new TeamService());
-            services.AddSingleton<ITimeService>(new TimeService());
+            services.AddSingleton<ITeamService, TeamService>();
+            services.AddSingleton<ITimeService, TimeService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
