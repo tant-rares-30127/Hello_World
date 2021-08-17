@@ -15,5 +15,7 @@ namespace HelloWorldWeb.Data
         }
 
         public DbSet<HelloWorldWeb.Models.Skill> Skill { get; set; }
+
+        public DbSet<HelloWorldWeb.Models.Member> Member { get; set; }
     }
 }

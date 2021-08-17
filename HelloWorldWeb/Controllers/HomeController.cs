@@ -31,7 +31,7 @@ namespace HelloWorldWeb.Controllers
             int index = this.teamService.GetTeamInfo().TeamMembers.Count + 1;
             ITimeService timeService = null;
             Member member = new Member(name, index, timeService);
-            this.teamService.AddTeamMember(member);
+            this.teamService.AddTeamMemberAsync(member);
             return index;
         }
 

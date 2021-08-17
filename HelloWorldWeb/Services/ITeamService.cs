@@ -8,7 +8,7 @@ namespace HelloWorldWeb.Services
 {
     public interface ITeamService
     {
-        void AddTeamMember(Member member);
+        void AddTeamMemberAsync(Member member);
 
         void DeleteTeamMember(Member member);
 
