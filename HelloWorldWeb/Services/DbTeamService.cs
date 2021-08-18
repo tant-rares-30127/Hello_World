@@ -31,6 +31,7 @@ namespace HelloWorldWeb.Services
         public void EditTeamMember(int id, string name)
         {
             var member = _context.Member.Find(id);
+            member.Name = name;
             _context.Update(member);
             _context.SaveChanges();
         }

@@ -15,7 +15,7 @@ namespace HelloWorldWeb.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(type: "text", nullable: true),
-                    Birthdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
+                    Birthdate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                 },
                 constraints: table =>
                 {

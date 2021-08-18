@@ -28,7 +28,7 @@ namespace HelloWorldWeb.Controllers
         [HttpPost]
         public int AddTeamMember(string name)
         {
-            int index = this.teamService.GetTeamInfo().TeamMembers.Count + 1;
+            int index = this.teamService.GetTeamInfo().TeamMembers[teamService.GetTeamInfo().TeamMembers.Count - 1].Id + 1;
             ITimeService timeService = null;
             Member member = new Member(name, index, timeService);
             this.teamService.AddTeamMemberAsync(member);
@@ -38,7 +38,7 @@ namespace HelloWorldWeb.Controllers
         [HttpPost]
         public void EditTeamMember(int id, string name)
         {
-            this.teamService.EditTeamMember(id - 1, name);
+            this.teamService.EditTeamMember(id, name);
         }
 
         [HttpDelete]
