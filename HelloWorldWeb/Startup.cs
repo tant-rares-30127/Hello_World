@@ -31,7 +31,13 @@ namespace HelloWorldWeb
         public static string ConvertHerokuStringToAspnetString(string herokuConnectionString)
         {
             var databaseUri = new Uri(herokuConnectionString);
-            return $"Host={databaseUri.Host};Port=5432;Database=d6j4bkkcivkb88;User Id=jfmvtlnuwfpgfc;Password=bd8afec8a163c1da7c4cbd9ce8a9f11292da0b8fade3d1e0f15562fe096a3407;Pooling=true;SSL Mode=Require;TrustServerCertificate=True";
+            var databaseUriArray = databaseUri.UserInfo;
+
+            var databaseUriUsername = databaseUriArray.Split(":")[0];
+            var databaseUriPassword = databaseUriArray.Split(":")[1];
+            var databaseName = databaseUri.LocalPath.TrimStart('/');
+
+            return $"Host={databaseUri.Host};Port=5432;Database={databaseName};User Id={databaseUriUsername};Password={databaseUriPassword};Pooling=true;SSL Mode=Require;TrustServerCertificate=True";
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
