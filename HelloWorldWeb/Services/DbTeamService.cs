@@ -38,7 +38,7 @@ namespace HelloWorldWeb.Services
 
         public TeamInfo GetTeamInfo()
         {
-            var memberList = _context.Member.ToList();
+            var memberList = _context.Member.ToList().OrderBy(_ => _.Id).ToList();
             TeamInfo teamInfo = new TeamInfo("Team2", memberList);
             return teamInfo;
         }
