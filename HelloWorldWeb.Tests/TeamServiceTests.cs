@@ -20,7 +20,7 @@ namespace HelloWorldWeb.Tests
             timeMock.Setup(_ => _.Now()).Returns(new DateTime(2021, 8, 11));
         }
 
-        [Fact (Skip = "Cause Borys said.")]
+        [Fact]
         public void GettingAgeTest()
         {
             // Assume
