@@ -43,9 +43,20 @@ namespace HelloWorldWeb
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            string databaseURL = Environment.GetEnvironmentVariable("DATABASE_URL");
+            if (databaseURL == null)
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseNpgsql(
+                        Configuration.GetConnectionString("DefaultConnection")));
+            }
+            else
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    ConvertHerokuStringToAspnetString(databaseURL)));
+            }
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddSwaggerGen(c =>
