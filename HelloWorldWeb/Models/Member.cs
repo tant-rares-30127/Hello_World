@@ -4,12 +4,14 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using HelloWorldWeb.Services;
 
 namespace HelloWorldWeb.Models
 {
+    [DebuggerDisplay("{Name}[{Id}]")]
     public class Member
     {
         private readonly ITimeService timeService;
@@ -37,6 +39,11 @@ namespace HelloWorldWeb.Models
             age = age / 365;
 
             return age;
+        }
+
+        public override string ToString()
+        {
+            return $"{Name} {Id}";
         }
     }
 }

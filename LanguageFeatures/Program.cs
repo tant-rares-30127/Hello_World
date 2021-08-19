@@ -16,7 +16,13 @@ namespace LanguageFeatures
             Console.WriteLine(jsonString);
             string file = "MemberFile.json";
             File.WriteAllText(file, jsonString);
-            Member memberDeserealized = JsonSerializer.Deserialize<Member>(jsonString);
+            var readedMember = File.ReadAllTextAsync(file);
+            readedMember.Wait();
+            var outputMember = readedMember.Result;
+
+            Member memberDeserealized = JsonSerializer.Deserialize<Member>(outputMember);
+            Console.WriteLine(memberDeserealized.ToString());
+            
         }
     }
 }
