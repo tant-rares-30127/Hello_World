@@ -27,7 +27,8 @@ namespace LanguageFeatures
             var type = Console.ReadLine();
 
             Coffe coffe = MakeCoffe("grain", "milk", "water", "sugar", (type == "FlatWhite") ? (FlatWhite) : (Espresso));
-            Console.WriteLine($"Here is your coffee:{coffe}.");
+            if (coffe == null) Console.WriteLine("Here it is not your coffee.");
+            else Console.WriteLine($"Here is your coffee:{coffe}.");
         }
 
 
@@ -41,7 +42,9 @@ namespace LanguageFeatures
             }
             catch
             {
-                throw;
+                Console.WriteLine("Something went wrong.");
+                Console.WriteLine("Your order could not be completed.");
+                return null;
             }
             finally
             {
@@ -52,7 +55,7 @@ namespace LanguageFeatures
         static Coffe Espresso(string grains, string milk, string water, string sugar)
         {
 
-            return new Coffe("Espresso");
+            throw new RecipeUnavaillableException();
         }
 
         static Coffe FlatWhite(string grains, string milk, string water, string sugar)
