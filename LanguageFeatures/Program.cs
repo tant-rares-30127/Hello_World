@@ -40,10 +40,14 @@ namespace LanguageFeatures
                 var coffe = recipe(grains, milk, water, sugar);
                 return coffe;
             }
-            catch
+            catch(RecipeUnavaillableException e)
             {
-                Console.WriteLine("Something went wrong.");
-                Console.WriteLine("Your order could not be completed.");
+                Console.WriteLine(e.Message);
+                return null;
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine($"Something went wrong {e.Message}.");
                 return null;
             }
             finally
@@ -55,7 +59,7 @@ namespace LanguageFeatures
         static Coffe Espresso(string grains, string milk, string water, string sugar)
         {
 
-            throw new RecipeUnavaillableException();
+            throw new ApplicationException();
         }
 
         static Coffe FlatWhite(string grains, string milk, string water, string sugar)
