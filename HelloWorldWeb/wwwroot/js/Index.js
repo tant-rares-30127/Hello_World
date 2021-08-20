@@ -1,4 +1,18 @@
 $(document).ready(function () {
+
+    var connection = new signalR.HubConnectionBuilder().withUrl("/messagehub").build();
+
+    connection.on("NewTeamMemberAdded", function (name, id) {
+        console.log(`New team member added: name, ${name} ${id}`);
+    });
+
+    connection.start().then(function () {
+        console.log('Connection Started')
+
+    }).catch(function (err) {
+        return console.error(err.toString());
+    });
+
     $("#createButton").click(function () {
         var newcomerName = $("#nameField").val();
 
@@ -22,7 +36,6 @@ $(document).ready(function () {
                     </li>`);
                 $("#nameField").val("");
                 document.getElementById("createButton").disabled = true;
-                location.reload();
             }
         })
 

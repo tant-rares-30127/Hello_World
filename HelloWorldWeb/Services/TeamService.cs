@@ -7,17 +7,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HelloWorldWeb.Models;
+using Microsoft.AspNetCore.SignalR;
 
 namespace HelloWorldWeb.Services
 {
     public class TeamService : ITeamService
     {
         private readonly TeamInfo teamInfo;
+        private readonly IHubContext<MessageHub> messageHub;
         private ITimeService timeService;
+
+        public TeamService(IHubContext<MessageHub> messageHubContext)
+        {
+            this.teamInfo = new TeamInfo { TeamName = "name", TeamMembers = new List<Member>() { new Member("Gabriel", 1, this.timeService), new Member("Delia", 2, this.timeService), new Member("Rares", 3, this.timeService), new Member("Catalin", 4, this.timeService) } };
+            this.messageHub = messageHubContext;
+        }
 
         public TeamService()
         {
-            this.teamInfo = new TeamInfo { TeamName = "name", TeamMembers = new List<Member>() { new Member("Gabriel", 1, this.timeService), new Member("Delia", 2, this.timeService), new Member("Rares", 3, this.timeService), new Member("Catalin", 4, this.timeService) } };
         }
 
         public TeamInfo GetTeamInfo()
@@ -28,6 +35,7 @@ namespace HelloWorldWeb.Services
         public void AddTeamMember(Member member)
         {
             this.teamInfo.TeamMembers.Add(member);
+            messageHub.Clients.All.SendAsync("NewTeamMemberAdded", member.Name, member.Id);
         }
 
         void ITeamService.DeleteTeamMember(Member member)
