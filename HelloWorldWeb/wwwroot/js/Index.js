@@ -1,9 +1,11 @@
+'use strict';
 $(document).ready(function () {
 
     var connection = new signalR.HubConnectionBuilder().withUrl("/messagehub").build();
 
-    connection.on("NewTeamMemberAdded", function (name, id) {
+    connection.on("NewTeamMemberAdded", function(name, id) {
         console.log(`New team member added: name, ${name} ${id}`);
+        createNewComer(name, id)
     });
 
     connection.start().then(function () {
@@ -96,6 +98,23 @@ function deleteMember(index) {
         }
     })
 }
+
+function createNewComer(name, id) {
+    // Remember string interpolation
+    $("#list").append(
+        `<li class="member" member-id="${id}">
+            <span class="memberName">
+                ${name}
+            </span >
+            <span class="delete fa fa-remove" onclick="deleteMember(${id})">
+            </span>
+            <span class="edit fa fa-pencil">
+            </span>
+        </li>`);
+}
+/*$("#clear").click(function () {
+    $("#newcomer").val("");
+})*/
 
 
 (function () {
