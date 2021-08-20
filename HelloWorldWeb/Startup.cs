@@ -44,6 +44,8 @@ namespace HelloWorldWeb
                 c.IncludeXmlComments(xmlPath, includeControllerXmlComments: true);
             });
 
+            services.AddSignalR();
+
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
@@ -85,6 +87,7 @@ namespace HelloWorldWeb
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
+                endpoints.MapHub<MessageHub>("/messagehub");
             });
         }
     }
