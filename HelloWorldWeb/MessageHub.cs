@@ -1,4 +1,4 @@
-﻿// <copyright file="Startup.cs" company="PlaceholderCompany">
+﻿// <copyright file="MessageHub.cs" company="PlaceholderCompany">
 // Copyright (c) PlaceholderCompany. All rights reserved.
 // </copyright>
 

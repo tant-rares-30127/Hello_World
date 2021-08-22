@@ -15,7 +15,7 @@ namespace HelloWorldWeb.Services
     {
         private readonly TeamInfo teamInfo;
         private readonly IHubContext<MessageHub> messageHub;
-        private ITimeService timeService;
+        private ITimeService timeService = new TimeService();
 
         public TeamService(IHubContext<MessageHub> messageHubContext)
         {
