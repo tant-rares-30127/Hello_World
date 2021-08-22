@@ -36,7 +36,10 @@ namespace HelloWorldWeb.Services
         public void AddTeamMember(Member member)
         {
             this.teamInfo.TeamMembers.Add(member);
-            messageHub.Clients.All.SendAsync("NewTeamMemberAdded", member.Name, member.Id);
+            if (messageHub != null)
+            {
+                messageHub.Clients.All.SendAsync("NewTeamMemberAdded", member.Name, member.Id);
+            }
         }
 
         void ITeamService.DeleteTeamMember(Member member)
