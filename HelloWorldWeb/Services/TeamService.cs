@@ -31,7 +31,7 @@ namespace HelloWorldWeb.Services
         public void AddTeamMember(Member member)
         {
             this.teamInfo.TeamMembers.Add(member);
-            broadcastService.NewTeamMemberAdded("George", 5);
+            broadcastService.NewTeamMemberAdded(member.Name, member.Id);
         }
 
         void ITeamService.DeleteTeamMember(Member member)

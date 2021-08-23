@@ -26,16 +26,6 @@ $(document).ready(function () {
                 "name": newcomerName
             },
             success: function (result) {
-                $("#list").append(
-                    `<li>
-                        <span class="memberName">
-                            ${newcomerName}
-                        </span >
-                        <span class="delete fa fa-remove" onclick="deleteMember(${result})">
-                        </span>
-                        <span class="edit fa fa-pencil">
-                        </span>
-                    </li>`);
                 $("#nameField").val("");
                 document.getElementById("createButton").disabled = true;
             }
