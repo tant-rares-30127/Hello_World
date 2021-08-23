@@ -49,7 +49,6 @@ $(document).ready(function () {
         console.log('submit changes to server');
         var name = $("#classmateName").val();
         var id = $('#editClassmate').attr('data-member-id');
-      //  var id = 5;
         $.ajax({
             url: "/Home/EditTeamMember",
             method: "POST",
@@ -81,7 +80,8 @@ $(document).ready(function () {
     $("#list").on("click", ".delete", function () {
         var targetMemberTag = $(this).closest('li');
         var id = targetMemberTag.attr('data-member-id');
-        deleteMember(id)
+/*        var id = $(this).parent().attr("data-member-id");*/
+        deleteMember(id);
     })
 
 });
@@ -111,7 +111,7 @@ function onMemberEdit(id, name) {
 function createNewComer(name, id) {
     // Remember string interpolation
     $("#list").append(
-        `<li class="member" member-id="${id}">
+        `<li class="member" data-member-id="${id}">
             <span class="memberName">
                 ${name}
             </span >
