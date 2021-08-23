@@ -117,7 +117,7 @@ function createNewComer(name, id) {
             </span >
             <span class="delete fa fa-remove">
             </span>
-            <span class="edit fa fa-pencil">
+            <span class="pencil fa fa-pencil">
             </span>
         </li>`);
 }

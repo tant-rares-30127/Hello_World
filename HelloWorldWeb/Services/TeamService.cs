@@ -42,7 +42,7 @@ namespace HelloWorldWeb.Services
 
         void ITeamService.EditTeamMember(int id, string name)
         {
-            this.teamInfo.TeamMembers[id].Name = name;
+            this.teamInfo.TeamMembers[id - 1].Name = name;
             this.broadcastService.EditTheTeamMember(id, name);
         }
     }
