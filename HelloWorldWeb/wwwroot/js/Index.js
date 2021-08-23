@@ -8,6 +8,16 @@ $(document).ready(function () {
         createNewComer(name, id)
     });
 
+    connection.on("DeleteTheTeamMember", function (id) {
+        console.log(`Delete team member: ${id}`);
+        onMemberDelete(id)
+    });
+
+    connection.on("EditTheTeamMember", function (id, name) {
+        console.log(`Edit team member: ${id}`);
+        onMemberEdit(id, name)
+    });
+
     connection.start().then(function () {
         console.log('Connection Started')
 
@@ -17,8 +27,6 @@ $(document).ready(function () {
 
     $("#createButton").click(function () {
         var newcomerName = $("#nameField").val();
-
-
         $.ajax({
             url: "/Home/AddTeamMember",
             method: "POST",
@@ -30,8 +38,6 @@ $(document).ready(function () {
                 document.getElementById("createButton").disabled = true;
             }
         })
-
-
     });
 
     $("#clearButton").click(function ClearFields() {
@@ -53,7 +59,6 @@ $(document).ready(function () {
             },
             success: function (result) {
                 console.log('Succesful renamed: ${id}');
-                location.reload();
             }
         })
     })
@@ -73,6 +78,12 @@ $(document).ready(function () {
         $('#editClassmate').modal('show');
     })
 
+    $("#list").on("click", ".delete", function () {
+        var targetMemberTag = $(this).closest('li');
+        var id = targetMemberTag.attr('data-member-id');
+        deleteMember(id)
+    })
+
 });
 
 function deleteMember(index) {
@@ -84,9 +95,17 @@ function deleteMember(index) {
             "id": index
         },
         success: function (result) {
-            location.reload();
+            
         }
     })
+}
+
+function onMemberDelete(id) {
+    $(`li[data-member-id=${id}]`).remove();
+}
+
+function onMemberEdit(id, name) {
+    $(`li[data-member-id=${id}]`).find(".memberName").text(name);
 }
 
 function createNewComer(name, id) {
@@ -96,7 +115,7 @@ function createNewComer(name, id) {
             <span class="memberName">
                 ${name}
             </span >
-            <span class="delete fa fa-remove" onclick="deleteMember(${id})">
+            <span class="delete fa fa-remove">
             </span>
             <span class="edit fa fa-pencil">
             </span>

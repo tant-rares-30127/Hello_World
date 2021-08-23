@@ -37,11 +37,13 @@ namespace HelloWorldWeb.Services
         void ITeamService.DeleteTeamMember(Member member)
         {
             this.teamInfo.TeamMembers.Remove(member);
+            this.broadcastService.DeleteTheTeamMember(member.Id);
         }
 
         void ITeamService.EditTeamMember(int id, string name)
         {
             this.teamInfo.TeamMembers[id].Name = name;
+            this.broadcastService.EditTheTeamMember(id, name);
         }
     }
 }
