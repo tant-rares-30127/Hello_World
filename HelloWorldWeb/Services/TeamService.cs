@@ -14,18 +14,13 @@ namespace HelloWorldWeb.Services
     public class TeamService : ITeamService
     {
         private readonly TeamInfo teamInfo;
-        private readonly IHubContext<MessageHub> messageHub;
+        private readonly IBroadcastServices broadcastService;
         private ITimeService timeService = new TimeService();
 
-        public TeamService(IHubContext<MessageHub> messageHubContext)
+        public TeamService(IBroadcastServices broadcastService)
         {
             this.teamInfo = new TeamInfo { TeamName = "name", TeamMembers = new List<Member>() { new Member("Gabriel", 1, this.timeService), new Member("Delia", 2, this.timeService), new Member("Rares", 3, this.timeService), new Member("Catalin", 4, this.timeService) } };
-            this.messageHub = messageHubContext;
-        }
-
-        public TeamService()
-        {
-            this.teamInfo = new TeamInfo { TeamName = "name", TeamMembers = new List<Member>() { new Member("Gabriel", 1, this.timeService), new Member("Delia", 2, this.timeService), new Member("Rares", 3, this.timeService), new Member("Catalin", 4, this.timeService) } };
+            this.broadcastService = broadcastService;
         }
 
         public TeamInfo GetTeamInfo()
@@ -36,10 +31,7 @@ namespace HelloWorldWeb.Services
         public void AddTeamMember(Member member)
         {
             this.teamInfo.TeamMembers.Add(member);
-            if (messageHub != null)
-            {
-                messageHub.Clients.All.SendAsync("NewTeamMemberAdded", member.Name, member.Id);
-            }
+            broadcastService.NewTeamMemberAdded("George", 5);
         }
 
         void ITeamService.DeleteTeamMember(Member member)

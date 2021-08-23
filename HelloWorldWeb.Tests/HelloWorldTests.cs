@@ -1,6 +1,8 @@
 using System;
 using HelloWorldWeb.Models;
 using HelloWorldWeb.Services;
+using Microsoft.AspNetCore.SignalR;
+using Moq;
 using Xunit;
 
 namespace HelloWorldWeb.Tests
@@ -8,13 +10,16 @@ namespace HelloWorldWeb.Tests
     public class NewTeamServiceTests
     {
         private ITimeService timeService;
+        private IHubContext<MessageHub> messageHub;
+        private IBroadcastServices broadcastService;
 
         [Fact]
         public void AddTeamMemberToTheTeam()
         {
             // Assume
-
-            ITeamService teamService = new TeamService();
+            Mock<IBroadcastServices> broadcastServiceMock = new Mock<IBroadcastServices>();
+            broadcastService = broadcastServiceMock.Object;
+            ITeamService teamService = new TeamService(broadcastService);
 
             // Act
 
@@ -23,6 +28,7 @@ namespace HelloWorldWeb.Tests
 
             // Assert
             Assert.Equal(5, teamService.GetTeamInfo().TeamMembers.Count);
+            broadcastServiceMock.Verify(_ => _.NewTeamMemberAdded(It.IsAny<string>(), 5), Times.Once);
 
         }
 
@@ -30,8 +36,9 @@ namespace HelloWorldWeb.Tests
         public void DeleteTeamMemberToTheTeam()
         {
             // Assume
-
-            ITeamService teamService = new TeamService();
+            Mock<IBroadcastServices> broadcastServiceMock = new Mock<IBroadcastServices>();
+            broadcastService = broadcastServiceMock.Object;
+            ITeamService teamService = new TeamService(broadcastService);
 
             // Act
 
@@ -51,7 +58,7 @@ namespace HelloWorldWeb.Tests
         {
             // Assume
 
-            ITeamService teamService = new TeamService();
+            ITeamService teamService = new TeamService(broadcastService);
 
             // Act
 
@@ -68,7 +75,9 @@ namespace HelloWorldWeb.Tests
         public void CheckIdWhenDeleted()
         {
             // Assume
-            ITeamService teamService = new TeamService();
+            Mock<IBroadcastServices> broadcastServiceMock = new Mock<IBroadcastServices>();
+            broadcastService = broadcastServiceMock.Object;
+            ITeamService teamService = new TeamService(broadcastService);
             var teamMember = teamService.GetTeamInfo().TeamMembers[teamService.GetTeamInfo().TeamMembers.Count - 2];
             var newMember = new Member("Borys", 5, timeService);
 

@@ -53,6 +53,7 @@ namespace HelloWorldWeb
             services.Configure<WeatherControllerSettings>(Configuration);
             services.AddSingleton<ITeamService, TeamService>();
             services.AddSingleton<ITimeService, TimeService>();
+            services.AddSingleton<IBroadcastServices, BroadcastService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
