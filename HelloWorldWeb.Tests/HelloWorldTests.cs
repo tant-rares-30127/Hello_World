@@ -57,16 +57,17 @@ namespace HelloWorldWeb.Tests
         public void EditTeamMember()
         {
             // Assume
-
+            Mock<IBroadcastServices> broadcastServiceMock = new Mock<IBroadcastServices>();
+            broadcastService = broadcastServiceMock.Object;
             ITeamService teamService = new TeamService(broadcastService);
 
             // Act
 
-            teamService.EditTeamMember(3, "NewName");
+            teamService.EditTeamMember(2, "NewName");
 
             // Assert
 
-            Assert.Equal("NewName", teamService.GetTeamInfo().TeamMembers[3].Name);
+            Assert.Equal("NewName", teamService.GetTeamInfo().TeamMembers[1].Name);
             Assert.Equal(4, teamService.GetTeamInfo().TeamMembers.Count);
 
         }
