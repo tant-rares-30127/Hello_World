@@ -14,6 +14,10 @@ namespace HelloWorldWeb.Models
     {
         private readonly ITimeService timeService;
 
+        public Member()
+        {
+        }
+
         public Member(string name, int id, ITimeService timeService)
         {
             this.timeService = timeService;

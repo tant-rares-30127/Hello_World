@@ -28,10 +28,10 @@ namespace HelloWorldWeb.Controllers
         [HttpPost]
         public int AddTeamMember(string name)
         {
-            int index = this.teamService.GetTeamInfo().TeamMembers.Count + 1;
+            int index = this.teamService.GetTeamInfo().TeamMembers[teamService.GetTeamInfo().TeamMembers.Count - 1].Id + 1;
             ITimeService timeService = null;
             Member member = new Member(name, index, timeService);
-            this.teamService.AddTeamMember(member);
+            this.teamService.AddTeamMemberAsync(member);
             return index;
         }
 

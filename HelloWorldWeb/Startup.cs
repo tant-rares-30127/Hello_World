@@ -28,12 +28,35 @@ namespace HelloWorldWeb
 
         public IConfiguration Configuration { get; }
 
+        public static string ConvertHerokuStringToAspnetString(string herokuConnectionString)
+        {
+            var databaseUri = new Uri(herokuConnectionString);
+            var databaseUriArray = databaseUri.UserInfo;
+
+            var databaseUriUsername = databaseUriArray.Split(":")[0];
+            var databaseUriPassword = databaseUriArray.Split(":")[1];
+            var databaseName = databaseUri.LocalPath.TrimStart('/');
+
+            return $"Host={databaseUri.Host};Port=5432;Database={databaseName};User Id={databaseUriUsername};Password={databaseUriPassword};Pooling=true;SSL Mode=Require;TrustServerCertificate=True";
+        }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            string databaseURL = Environment.GetEnvironmentVariable("DATABASE_URL");
+            if (databaseURL == null)
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseNpgsql(
+                        Configuration.GetConnectionString("DefaultConnection")));
+            }
+            else
+            {
+                services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseNpgsql(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    ConvertHerokuStringToAspnetString(databaseURL)));
+            }
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddSwaggerGen(c =>
@@ -51,7 +74,7 @@ namespace HelloWorldWeb
             services.AddControllersWithViews();
             services.AddSingleton<IWeatherControllerSettings, WeatherControllerSettings>();
             services.Configure<WeatherControllerSettings>(Configuration);
-            services.AddSingleton<ITeamService, TeamService>();
+            services.AddScoped<ITeamService, DbTeamService>();
             services.AddSingleton<ITimeService, TimeService>();
             services.AddSingleton<IBroadcastServices, BroadcastService>();
         }

@@ -9,7 +9,7 @@ namespace HelloWorldWeb.Tests
 {
     public class NewTeamServiceTests
     {
-        private ITimeService timeService;
+        private ITimeService timeService = new TimeService();
         private IHubContext<MessageHub> messageHub;
         private IBroadcastServices broadcastService;
 
@@ -24,7 +24,7 @@ namespace HelloWorldWeb.Tests
             // Act
 
             Member member = new Member("George", 5, timeService);
-            teamService.AddTeamMember(member);
+            teamService.AddTeamMemberAsync(member);
 
             // Assert
             Assert.Equal(5, teamService.GetTeamInfo().TeamMembers.Count);
@@ -44,7 +44,7 @@ namespace HelloWorldWeb.Tests
 
             Member member = new Member("George", 5, timeService);
             Member member2 = teamService.GetTeamInfo().TeamMembers[2];
-            teamService.AddTeamMember(member);
+            teamService.AddTeamMemberAsync(member);
             teamService.DeleteTeamMember(member);
             teamService.DeleteTeamMember(member2);
 
@@ -84,7 +84,7 @@ namespace HelloWorldWeb.Tests
 
             // Act
             teamService.DeleteTeamMember(teamMember);
-            teamService.AddTeamMember(newMember);
+            teamService.AddTeamMemberAsync(newMember);
             teamService.DeleteTeamMember(newMember);
 
             // Assert
