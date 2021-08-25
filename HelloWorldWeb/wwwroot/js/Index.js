@@ -70,7 +70,7 @@ $(document).ready(function () {
 
         var targetMemberTag = $(this).closest('li');
         var id = targetMemberTag.attr('data-member-id');
-        var currentName = targetMemberTag.find(".memberName").text();
+        var currentName = targetMemberTag.find(".memberName").text().trim();
 
         $('#editClassmate').attr("data-member-id", id);
         $('#classmateName').val(currentName);
@@ -80,7 +80,6 @@ $(document).ready(function () {
     $("#list").on("click", ".delete", function () {
         var targetMemberTag = $(this).closest('li');
         var id = targetMemberTag.attr('data-member-id');
-/*        var id = $(this).parent().attr("data-member-id");*/
         deleteMember(id);
     })
 
