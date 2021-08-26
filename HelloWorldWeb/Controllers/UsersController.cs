@@ -31,6 +31,7 @@ namespace HelloWorldWeb.Controllers
             var user = await userManager.FindByIdAsync(id);
             await userManager.AddToRoleAsync(user, "Administrators");
             userManager.FindByIdAsync(id).Result.Role = "Administrator";
+            await userManager.UpdateAsync(user);
             return RedirectToAction(nameof(Index));
         }
 
@@ -39,6 +40,7 @@ namespace HelloWorldWeb.Controllers
             var user = await userManager.FindByIdAsync(id);
             await userManager.RemoveFromRoleAsync(user, "Administrators");
             userManager.FindByIdAsync(id).Result.Role = "Basic User";
+            await userManager.UpdateAsync(user);
             return RedirectToAction(nameof(Index));
         }
 
