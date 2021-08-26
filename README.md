@@ -1,5 +1,8 @@
 # HelloWorld
 
+[![.NET](https://github.com/tant-rares-30127/Hello_World/actions/workflows/dotnet.yml/badge.svg)](https://github.com/tant-rares-30127/Hello_World/actions/workflows/dotnet.yml)
+
+
 ## How to deploy to Heroku
 
 1. Login to heroku 
@@ -9,7 +12,6 @@ heroku login
 
 2. Build container
 
-Build docker image:
 ```
 docker build -t rareshelloworldapp
 ```
