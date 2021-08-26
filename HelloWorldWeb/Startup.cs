@@ -7,6 +7,7 @@ using System.IO;
 using System.Reflection;
 using HelloWorldWeb.Controllers;
 using HelloWorldWeb.Data;
+using HelloWorldWeb.Models;
 using HelloWorldWeb.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -69,7 +70,7 @@ namespace HelloWorldWeb
 
             services.AddSignalR();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUserWithRole>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
@@ -79,7 +80,7 @@ namespace HelloWorldWeb
             services.AddScoped<ITeamService, DbTeamService>();
             services.AddSingleton<ITimeService, TimeService>();
             services.AddSingleton<IBroadcastServices, BroadcastService>();
-            AssignRoleProgramaticaly(services.BuildServiceProvider());
+            /*AssignRoleProgramaticaly(services.BuildServiceProvider());*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -118,11 +119,11 @@ namespace HelloWorldWeb
             });
         }
 
-        private async void AssignRoleProgramaticaly(IServiceProvider services)
+/*        private async void AssignRoleProgramaticaly(IServiceProvider services)
         {
             var userManager = services.GetRequiredService<UserManager<IdentityUser>>();
             var user = await userManager.FindByNameAsync("tantrares@yahoo.com");
             await userManager.AddToRoleAsync(user, "Administrators");
-        }
+        }*/
     }
 }

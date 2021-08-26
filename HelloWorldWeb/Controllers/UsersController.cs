@@ -13,9 +13,9 @@ namespace HelloWorldWeb.Controllers
 {
     public class UsersController : Controller
     {
-        private UserManager<IdentityUser> userManager;
+        private UserManager<IdentityUserWithRole> userManager;
 
-        public UsersController(UserManager<IdentityUser> userManager)
+        public UsersController(UserManager<IdentityUserWithRole> userManager)
         {
             this.userManager = userManager;
         }
@@ -30,16 +30,16 @@ namespace HelloWorldWeb.Controllers
         {
             var user = await userManager.FindByIdAsync(id);
             await userManager.AddToRoleAsync(user, "Administrators");
+            userManager.FindByIdAsync(id).Result.Role = "Administrator";
             return RedirectToAction(nameof(Index));
-
         }
 
         public async Task<IActionResult> AssignUser(string id)
         {
             var user = await userManager.FindByIdAsync(id);
             await userManager.RemoveFromRoleAsync(user, "Administrators");
+            userManager.FindByIdAsync(id).Result.Role = "Basic User";
             return RedirectToAction(nameof(Index));
-
         }
 
         /*       // GET: Users/Details/5

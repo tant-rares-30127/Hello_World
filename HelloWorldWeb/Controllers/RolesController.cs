@@ -10,7 +10,7 @@ namespace HelloWorldWeb.Controllers
 {
     public class RolesController : Controller
     {
-        RoleManager<IdentityRole> roleManager;
+        private RoleManager<IdentityRole> roleManager;
 
         public RolesController(RoleManager<IdentityRole> roleManager)
         {
