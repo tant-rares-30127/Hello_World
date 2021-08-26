@@ -1,4 +1,7 @@
-﻿@model TeamInfo
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+@model TeamInfo
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -42,16 +45,22 @@
         {
             var member = Model.TeamMembers[i];
 
-            <li class="member" data-member-id="@member.Id">
-                <span class="memberName">@member.Name</span>
-                <span class="delete fa fa-remove" ></span>
+        <li class="member" data-member-id="@member.Id">
+            <span class="memberName">@member.Name</span>
+            @if (SignInManager.IsSignedIn(User))
+            {
+                <span class="delete fa fa-remove"></span>
                 <span class="pencil fa fa-pencil"></span>
+            }
             </li>
         }
     </ul>
-    <input type="text" id="nameField" title="e.g Name" />
-    <button class="btn-primary" id="createButton" disabled title="Create">Create</button>
-    <button class="btn-secondary" id="clearButton" title="Clear">Clear</button>
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <input type="text" id="nameField" title="e.g Name" />
+        <button class="btn-primary" id="createButton" disabled title="Create">Create</button>
+        <button class="btn-secondary" id="clearButton" title="Clear">Clear</button>
+    }
 
 </div>
 
