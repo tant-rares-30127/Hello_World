@@ -38,3 +38,9 @@ dotnet_diagnostic.SA1601.severity = suggestion
 
 # IDE0044: Add readonly modifier
 dotnet_diagnostic.IDE0044.severity = suggestion
+
+# SA1201: Elements should appear in the correct order
+dotnet_diagnostic.SA1201.severity = suggestion
+
+# SA1649: File name should match first type name
+dotnet_diagnostic.SA1649.severity = suggestion
