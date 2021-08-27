@@ -2,6 +2,7 @@
 
 [![.NET](https://github.com/tant-rares-30127/Hello_World/actions/workflows/dotnet.yml/badge.svg)](https://github.com/tant-rares-30127/Hello_World/actions/workflows/dotnet.yml)
 
+Heroku app: http://rareshelloworldapp.herokuapp.com/Identity/Account/Login?ReturnUrl=%2F
 
 ## How to deploy to Heroku
 
