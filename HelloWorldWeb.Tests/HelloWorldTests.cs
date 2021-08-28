@@ -10,7 +10,6 @@ namespace HelloWorldWeb.Tests
     public class NewTeamServiceTests
     {
         private ITimeService timeService = new TimeService();
-        private IHubContext<MessageHub> messageHub;
         private IBroadcastServices broadcastService;
 
         [Fact]
